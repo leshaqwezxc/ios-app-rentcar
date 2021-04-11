@@ -11,7 +11,7 @@ import SwiftUI
 struct driveonApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            IntroView()
         }
     }
 }
