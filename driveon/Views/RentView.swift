@@ -97,7 +97,7 @@ struct RentView: View {
                     .font(.system(size: 16))
             })
             HStack(){
-                Text("Итого")
+                Text("Итого:")
                     .font(.system(size: 16))
 
                 Spacer()
