@@ -13,10 +13,10 @@ struct CarDetailScreen: View {
     var body: some View {
         VStack {
             
-            if viewModel.loadingState == .loading {
-                LoadingView()
-            } else if viewModel.loadingState == .success {
+            if viewModel.loadingState == .success || viewModel.loadingState == .loading {
                 CarDetailView(viewModel: viewModel)
+                    .redacted(reason:  viewModel.loadingState == .loading ? .placeholder : .init())
+                
             } else if viewModel.loadingState == .failed {
                 FailedView()
             }

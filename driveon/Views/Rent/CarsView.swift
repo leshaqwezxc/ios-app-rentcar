@@ -46,7 +46,7 @@ struct CarsView: View {
 
                         }
 
-                    }
+                    }.redacted(reason:  viewModel.loadingState == .loading ? .placeholder : .init())
                 case .failed:
                     FailedView()
                 }

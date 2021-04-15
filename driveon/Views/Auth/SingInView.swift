@@ -63,6 +63,8 @@ struct SingInView: View {
             Spacer()
             Button(action: {
                 viewModel.login(userEmail: email, userPassword: pass)
+                UserDefaults.standard.set(self.email, forKey: "email")
+                UserDefaults.standard.set(self.pass, forKey: "pass")
             }, label: {
                 
                 VStack{

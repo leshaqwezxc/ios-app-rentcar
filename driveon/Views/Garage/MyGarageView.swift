@@ -6,31 +6,19 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MyGarageView: View {
-    init() {
-            // 1.
+    
+    var rent: Rent
 
-           
-            // 2.
-            UINavigationBar.appearance().largeTitleTextAttributes = [
-                .foregroundColor: UIColor(named: "mainColor") ?? .black,
-                .font : UIFont(name:"RussoOne-regular", size: 40)!]
-                    
-            // 3.
-            UINavigationBar.appearance().titleTextAttributes = [
-                .foregroundColor: UIColor(named: "mainColor") ?? .black,
-                .font : UIFont(name: "RussoOne-regular", size: 20)!]
-        }
     var body: some View {
-        NavigationView{
-            ScrollView{
                 VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/){
-                    Text("Tayota Camry 3.5 2020")
+                    Text("\(rent.car.carbrand) \(rent.car.model)")
                         .font(.system(size: 30))
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .padding(.horizontal, 20)
-                    Image("camryMain")
+                    KFImage(URL(string: "http://192.168.0.10:3000/\(rent.car.carimg)"))
                         .resizable()
                         .scaledToFill()
                         .padding(.top, 40)
@@ -48,7 +36,7 @@ struct MyGarageView: View {
                                     .font(.system(size: 15))
                                     .foregroundColor(.gray)
                                     .padding(.bottom, 2)
-                                Text("Черный")
+                                Text("\(rent.car.color)")
                                     .fontWeight(.semibold)
                                     .font(.system(size: 20))
                             }
@@ -193,15 +181,7 @@ struct MyGarageView: View {
 
                     }
                 }.navigationBarTitle(Text("Мой гараж"))
-            }
-        }
 
        
-    }
-}
-
-struct MyGarageView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyGarageView()
     }
 }

@@ -17,7 +17,7 @@ struct HomeTabBarView: View {
                     Image( systemName: "car.2.fill")
                     Text("Аренда")
                 }
-            MyGarageView()
+            MyGarageScreen()
                 .tabItem{
                     Image("garage")
                     Text("Гараж")

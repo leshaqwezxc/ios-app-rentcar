@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    @ObservedObject var viewModel = ProfileViewModel()
+    @State var isEdit = false
     init() {
             // 1.
 
@@ -24,35 +27,41 @@ struct ProfileView: View {
         }
     var body: some View {
         NavigationView{
-            ScrollView{
-                VStack(alignment: .leading){
-                    Text("Алексей Тузовский")
-                    Divider()
-                    Text("Email")
-                    Text("leshaqwezxc@gmail.com")
-                    Divider()
-                    Text("Номер телефона")
-                    Text("+7(981)971-56-28")
-                    Divider()
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                        Text("История аренды")
-                    })
-                    Spacer()
-                    
-                }
-                .padding(.horizontal, 20)
-            }
 
-            .navigationBarItems(trailing:
-                        HStack {
-                            Button(action: {}) {
-                                Image(systemName: "pencil.circle")
-                                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                            }.foregroundColor(Color("mainColor"))
+                ScrollView{
+                    VStack(alignment: .leading){
+                        Text("\(viewModel.user.userInfo.lastName) \(viewModel.user.userInfo.firstName) \(viewModel.user.userInfo.patronymic)")
+                        Divider()
+                        Text("Email")
+                        Text("\(viewModel.user.email)")
+                        Divider()
+                        Text("Номер телефона")
+                        Text("\(viewModel.user.userInfo.phone)")
+                        Divider()
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                            Text("История аренды")
                         })
-            .navigationBarTitle(Text("Профиль"))
+                        Spacer()
+                        
+                    }
+                    .padding(.horizontal, 20)
+                }
+                .navigationBarItems(trailing:
+                            HStack {
+                                Button(action: {isEdit.toggle()}) {
+                                    Image(systemName: "pencil.circle")
+                                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                }.foregroundColor(Color("mainColor"))
+                                .sheet(isPresented: $isEdit, content: {
+                                    ProfileEditView()
+                                })
+                            })
+                .navigationBarTitle(Text("Профиль"))
+            
+
             
         }
+
     }
 }
 

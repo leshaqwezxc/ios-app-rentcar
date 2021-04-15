@@ -9,17 +9,17 @@ import SwiftUI
 import PassKit
 
 struct ApplePayButton: UIViewRepresentable {
-        func updateUIView(_ uiView: PKPaymentButton, context: Context) {
-    
-        }
-        func makeUIView(context: Context) -> PKPaymentButton {
-                return PKPaymentButton(paymentButtonType: .plain, paymentButtonStyle: .black)
-        }
+    func updateUIView(_ uiView: PKPaymentButton, context: Context) {
+        
+    }
+    func makeUIView(context: Context) -> PKPaymentButton {
+        return PKPaymentButton(paymentButtonType: .plain, paymentButtonStyle: .black)
+    }
 }
 struct ApplePayButtonStyle: ButtonStyle {
-        func makeBody(configuration: Self.Configuration) -> some View {
-             return ApplePayButton()
-        }
+    func makeBody(configuration: Self.Configuration) -> some View {
+        return ApplePayButton()
+    }
 }
 
 struct addsButton: View{
@@ -38,7 +38,7 @@ struct addsButton: View{
             .animation(.linear(duration: 0.3))
         }
     }
-
+    
 }
 
 struct RentView: View {
@@ -58,7 +58,7 @@ struct RentView: View {
         return formatter
     }()
     var body: some View {
-
+        
         
         Form {
             Section(header: Text("Выберите дату")) {
@@ -74,17 +74,17 @@ struct RentView: View {
                         Text("\(places[index])")
                     }
                 }.font(.system(size: 16))
-
+                
                 Picker("Место возврата", selection: $placeIndex){
                     ForEach(0..<places.count){ index in
                         Text("\(places[index])")
                     }.font(.system(size: 16))
-
+                    
                 }
-               // Picker("Место возврата", selection: $place)
+                // Picker("Место возврата", selection: $place)
             }
             Section(header: Text("Выберите дополнительные услуги")){
-
+                
                 addsButton(add: $viewModel.adds[0])
                 addsButton(add: $viewModel.adds[1])
                 
@@ -94,30 +94,30 @@ struct RentView: View {
                     Text("Согласен с правилами аренды авто")
                         .underline()
                 })
-                    .font(.system(size: 16))
+                .font(.system(size: 16))
             })
             HStack(){
                 Text("Итого:")
                     .font(.system(size: 16))
-
+                
                 Spacer()
                 Text(String(price) + " ₽")
                     .font(.system(size: 14))
-
+                
             }
-//
-//            Button( action: {
-//                    self.setupPKPaymentRequest()
-//            }, label: { Text("")} )
-//            .frame(width: 212, height: 38, alignment: .center)
-//            .buttonStyle(ApplePayButtonStyle()
+            //
+            //            Button( action: {
+            //                    self.setupPKPaymentRequest()
+            //            }, label: { Text("")} )
+            //            .frame(width: 212, height: 38, alignment: .center)
+            //            .buttonStyle(ApplePayButtonStyle()
             NavigationLink(
                 destination: /*@START_MENU_TOKEN@*/Text("Destination")/*@END_MENU_TOKEN@*/,
                 isActive: self.$PayViewIsSelected,
                 label: {
-
+                    
                     VStack{
-
+                        
                         Text("Оплатить")
                             .foregroundColor(.white)
                             .font(Font.custom("RussoOne-Regular", size: 20))
@@ -134,14 +134,10 @@ struct RentView: View {
                     .padding(.vertical, 20)
                 })
                 .disabled(viewModel.isFileldFull == false)
-            .navigationTitle("Оформление аренды")
-            .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("Оформление аренды")
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
 
-struct RentView_Previews: PreviewProvider {
-    static var previews: some View {
-        RentView()
-    }
-}
+

@@ -48,6 +48,8 @@
 		694C46832621D2EA001902CE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694C46822621D2EA001902CE /* LoadingView.swift */; };
 		695ABFBB260A4761001F336D /* SingUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ABFBA260A4761001F336D /* SingUpView.swift */; };
 		695ABFC0260D3451001F336D /* CarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695ABFBF260D3451001F336D /* CarDetailView.swift */; };
+		697AE83E2628D0FF00E81B8A /* Rent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697AE83D2628D0FF00E81B8A /* Rent.swift */; };
+		697AE8432628D68300E81B8A /* MyGarageScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697AE8422628D68300E81B8A /* MyGarageScreen.swift */; };
 		69ABB2682628A3E500F97684 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABB2672628A3E500F97684 /* User.swift */; };
 		69F009AC261BA39D00BDC9FD /* RentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F009AB261BA39D00BDC9FD /* RentViewModel.swift */; };
 		69F009B7261BA6A500BDC9FD /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F009B6261BA6A500BDC9FD /* ProfileEditView.swift */; };
@@ -126,6 +128,8 @@
 		694C46822621D2EA001902CE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		695ABFBA260A4761001F336D /* SingUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpView.swift; sourceTree = "<group>"; };
 		695ABFBF260D3451001F336D /* CarDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailView.swift; sourceTree = "<group>"; };
+		697AE83D2628D0FF00E81B8A /* Rent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rent.swift; sourceTree = "<group>"; };
+		697AE8422628D68300E81B8A /* MyGarageScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGarageScreen.swift; sourceTree = "<group>"; };
 		69ABB2672628A3E500F97684 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		69F009AB261BA39D00BDC9FD /* RentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentViewModel.swift; sourceTree = "<group>"; };
 		69F009B6261BA6A500BDC9FD /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 				693057E225FCD83800C17D47 /* Tariff.swift */,
 				693057E725FCD8B600C17D47 /* Branch.swift */,
 				69ABB2672628A3E500F97684 /* User.swift */,
+				697AE83D2628D0FF00E81B8A /* Rent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -356,6 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				692826F2260E6214009F8B87 /* MyGarageView.swift */,
+				697AE8422628D68300E81B8A /* MyGarageScreen.swift */,
 			);
 			path = Garage;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				697AE8432628D68300E81B8A /* MyGarageScreen.swift in Sources */,
 				69FA5B1B2610A3D10079D61C /* CarCell.swift in Sources */,
 				6930578F25F25CF100C17D47 /* ContentView.swift in Sources */,
 				6930581D26093AF000C17D47 /* IntroView.swift in Sources */,
@@ -569,6 +576,7 @@
 				694C46832621D2EA001902CE /* LoadingView.swift in Sources */,
 				692826F8260F6666009F8B87 /* AboutUsView.swift in Sources */,
 				69F14DD02617A8A80083A1CB /* PickerField.swift in Sources */,
+				697AE83E2628D0FF00E81B8A /* Rent.swift in Sources */,
 				69282715260FB701009F8B87 /* HomeTabBarView.swift in Sources */,
 				6937C82E26174DEB00880932 /* DateField.swift in Sources */,
 				69282702260F7AF0009F8B87 /* AboutCompanyView.swift in Sources */,
