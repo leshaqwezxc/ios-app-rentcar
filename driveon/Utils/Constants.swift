@@ -7,6 +7,7 @@
 
 import Foundation
 
-struct Constants {
-    static let api = "http://localhost:3000/"
+struct AccauntInfo {
+    static var token = ""
+    static var id = 0
 }

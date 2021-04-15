@@ -8,27 +8,34 @@
 import SwiftUI
 
 struct SingInView: View {
-    @State var email = ""
-    @State var pass = ""
+    @ObservedObject var viewModel = SingInViewModel()
+    @State var email = UserDefaults.standard.string(forKey: "email") ?? ""
+    @State var pass = UserDefaults.standard.string(forKey: "pass") ?? ""
     @State var visible = false
     @State var isHomeViewPresented = false
     var body: some View {
         VStack{
             Image("logo2")
                 .resizable()
-                .frame(width: 262, height: 75, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(width: 262, height: 75, alignment: .center)
                 .padding(.top, 50)
             Text("Вход")
                 .font(Font.custom("RussoOne-Regular", size: 36))
             Text("Добро пожаловать!")
-                .frame(width: 275, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(width: 275, alignment: .center)
                 .font(.system(size: 18, weight: Font.Weight.light, design: Font.Design.default))
-            Text("Войдите чтобы продолжить")
-                .frame(width: 275, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .font(.system(size: 18, weight: Font.Weight.light, design: Font.Design.default))
+            Group {
+                Text("Войдите чтобы продолжить")
+                    .frame(width: 275, alignment: .center)
+                    .font(.system(size: 18, weight: Font.Weight.light, design: Font.Design.default))
+                if !viewModel.errorMessage.isEmpty {
+                    Text("\(viewModel.errorMessage)")
+                        .foregroundColor(.red)
+                }
+            }
             TextField("Электронная почта", text:$email)
                 .padding(.leading, 25)
-                .frame(height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(height: 60, alignment: .center)
             Divider()
                 .padding(.horizontal,20)
             HStack{
@@ -36,11 +43,11 @@ struct SingInView: View {
                     if self.visible{
                         TextField("Пароль", text: $pass)
                             .padding(.leading, 25)
-                            .frame(height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(height: 60, alignment: .center)
                     } else {
                         SecureField("Пароль", text: $pass)
                             .padding(.leading, 25)
-                            .frame(height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(height: 60, alignment: .center)
                     }
                 }
                 Button(action: {
@@ -55,7 +62,7 @@ struct SingInView: View {
                 .padding(.horizontal,20)
             Spacer()
             Button(action: {
-                isHomeViewPresented.toggle()
+                viewModel.login(userEmail: email, userPassword: pass)
             }, label: {
                 
                 VStack{
@@ -76,15 +83,10 @@ struct SingInView: View {
                 .animation(.linear(duration: 0.3))
                 .padding(.vertical, 20)
             })
-            .fullScreenCover(isPresented: self.$isHomeViewPresented, content: {
+            .fullScreenCover(isPresented: self.$viewModel.isCorrect, content: {
                 HomeTabBarView()
             })
         }
     }
 }
 
-struct SingInView_Previews: PreviewProvider {
-    static var previews: some View {
-        SingInView()
-    }
-}
