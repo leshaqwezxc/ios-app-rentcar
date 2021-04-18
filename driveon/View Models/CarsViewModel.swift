@@ -13,6 +13,7 @@ import Combine
 class CarsViewModel: ObservableObject {
     @Published var loadingState: LoadingStates = .none
     @Published var cars = [Car]()
+    @Published var rents = [Rent]()
     @Published var searchText = ""
     @Published var navigateToDetail = false
     @Published var carDetailViewModel = CarDetailViewModel()
@@ -46,7 +47,25 @@ class CarsViewModel: ObservableObject {
                 if let cars = cars {
                     DispatchQueue.main.async {
                         self.cars = cars
-                        self.loadingState = .success
+                        //self.loadingState = .success
+                        self.appService.getRents(complection: {
+                            result in
+                            switch result {
+                            case .success(let rents):
+                                DispatchQueue.main.async {
+                                    self.rents = rents
+                                    self.loadingState = .success
+//                                    for i in 0...cars.count - 1 {
+//                                        cars[i].addDates(rents: self.rents)
+//                                    }
+                                }
+                            case .failure(let error):
+                                print(error)
+                                DispatchQueue.main.async {
+                                    self.loadingState = .failed
+                                }
+                            }
+                        })
                     }
                 }
             case .failure(let error):

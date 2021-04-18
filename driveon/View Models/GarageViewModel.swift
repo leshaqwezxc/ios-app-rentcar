@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class GarageViewModel: ObservableObject {
-    @Published var rents: [Rent] = [Rent]()
+    @Published var rents: [GarageRent] = [GarageRent]()
     @Published var loadingState = LoadingStates.loading
     var appService = AppSevice()
     

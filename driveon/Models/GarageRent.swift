@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Rent: Codable, Identifiable{
+struct GarageRent: Codable, Identifiable{
     let id: Int
     let start, end, getPlace, returnPlace: String
     let isReturned, paid: Bool
@@ -35,5 +35,17 @@ struct CarRent: Codable {
         case id, carbrand, model, color, year, transmission, seats, power, carclass, carimg, statenum, vin, caraccesscode, createdAt, updatedAt
         case tariffID = "tariffId"
         case branchID = "branchId"
+    }
+}
+struct Rent: Codable {
+    let start, end, getPlace, returnPlace: String
+    let isReturned, paid: Bool
+    let price: Int
+    let userID, carID: Int
+
+    enum CodingKeys: String, CodingKey {
+        case start, end, getPlace, returnPlace, isReturned, paid, price 
+        case userID = "userId"
+        case carID = "carId"
     }
 }

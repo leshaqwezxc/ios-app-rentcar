@@ -28,7 +28,7 @@ struct ProfileEditView: View {
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                 VStack{
                     
-                    Text("Оплатить")
+                    Text("Изменить")
                         .foregroundColor(.white)
                         .font(Font.custom("RussoOne-Regular", size: 20))
                 }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)

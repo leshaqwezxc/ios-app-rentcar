@@ -10,7 +10,7 @@ import Kingfisher
 
 struct MyGarageView: View {
     
-    var rent: Rent
+    var rent: GarageRent
 
     var body: some View {
                 VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/){
@@ -156,15 +156,16 @@ struct MyGarageView: View {
                         }
                         Divider()
                             .padding(.horizontal,20)
-                        Button(action: {
+                        HStack {
+                            Button(action: {
                             
                         }, label: {
                             
                             VStack{
                                 
-                                Text("Сообщить о поломке/ДТП")
+                                Text("Отмеить аренду")
                                     .foregroundColor(.white)
-                                    .font(Font.custom("RussoOne-Regular", size: 20))
+                                    .font(Font.custom("RussoOne-Regular", size: 14))
                             }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
                             .padding(10)
                             .overlay(
@@ -177,7 +178,54 @@ struct MyGarageView: View {
                             .animation(.linear(duration: 0.3))
                             .padding(.vertical, 20)
                         })
+
+                            Button(action: {
+                                
+                            }, label: {
+                                
+                                VStack{
+                                    
+                                    Text("Изменить даты")
+                                        .foregroundColor(.white)
+                                        .font(Font.custom("RussoOne-Regular", size: 14))
+                                }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+                                .padding(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.blue, lineWidth: 1)
+                                )
+                                .frame(height: 50)
+                                .background(Color("mainColor"))
+                                .cornerRadius(10)
+                                .animation(.linear(duration: 0.3))
+                                .padding(.vertical, 20)
+                            })
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 0)
+                        Button(action: {
+                            
+                        }, label: {
+                            
+                            VStack{
+                                
+                                Text("Сообщить о поломке/ДТП")
+                                    .foregroundColor(.white)
+                                    .font(Font.custom("RussoOne-Regular", size: 20))
+                            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+                            .padding(0)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.blue, lineWidth: 1)
+                            )
+                            .frame(height: 50)
+                            .background(Color("mainColor"))
+                            .cornerRadius(10)
+                            .animation(.linear(duration: 0.3))
+                            .padding(.vertical, 10)
+                        })
                         .padding(.horizontal,20)
+                        .padding(.top, 0)
 
                     }
                 }.navigationBarTitle(Text("Мой гараж"))

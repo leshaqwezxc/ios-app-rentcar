@@ -14,6 +14,7 @@ struct Car: Codable, Identifiable{
     let tariffID, branchID: Int
     let tariff: Tariff
     let branch: Branch
+    var dates: [Date]? = nil
 
     enum CodingKeys: String, CodingKey {
         case id, carbrand, model, color, year, transmission, seats, power, carclass, carimg, statenum, vin, caraccesscode
@@ -21,6 +22,15 @@ struct Car: Codable, Identifiable{
         case branchID = "branchId"
         case tariff
         case branch
+    }
+    mutating func addDates(rents: [Rent]) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        for rent in rents {
+            if rent.carID == id {
+                dates?.append(formatter.date(from: rent.end) ?? Date())
+            }
+        }
     }
 }
 

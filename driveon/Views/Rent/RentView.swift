@@ -101,7 +101,7 @@ struct RentView: View {
                     .font(.system(size: 16))
                 
                 Spacer()
-                Text(String(price) + " ₽")
+                Text(String(viewModel.price) + " ₽")
                     .font(.system(size: 14))
                 
             }
@@ -111,29 +111,51 @@ struct RentView: View {
             //            }, label: { Text("")} )
             //            .frame(width: 212, height: 38, alignment: .center)
             //            .buttonStyle(ApplePayButtonStyle()
-            NavigationLink(
-                destination: /*@START_MENU_TOKEN@*/Text("Destination")/*@END_MENU_TOKEN@*/,
-                isActive: self.$PayViewIsSelected,
-                label: {
+            Button(action: {
+                print(viewModel.price)
+                print("\(Calendar.current.dateComponents([.day], from: viewModel.Rentdate1, to: viewModel.Rentdate2).day!)")
+                // viewModel.rent()
+            }, label: {
+                VStack{
                     
-                    VStack{
-                        
-                        Text("Оплатить")
-                            .foregroundColor(.white)
-                            .font(Font.custom("RussoOne-Regular", size: 20))
-                    }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
-                    .padding(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 1)
-                    )
-                    .frame(height: 50)
-                    .background(Color("mainColor"))
-                    .cornerRadius(10)
-                    .animation(.linear(duration: 0.3))
-                    .padding(.vertical, 20)
-                })
-                .disabled(viewModel.isFileldFull == false)
+                    Text("Оплатить")
+                        .foregroundColor(.white)
+                        .font(Font.custom("RussoOne-Regular", size: 20))
+                }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+                .padding(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.blue, lineWidth: 1)
+                )
+                .frame(height: 50)
+                .background(Color("mainColor"))
+                .cornerRadius(10)
+                .animation(.linear(duration: 0.3))
+                .padding(.vertical, 20)
+            }).disabled(!viewModel.isDateValid)
+//            NavigationLink(
+//                destination: /*@START_MENU_TOKEN@*/Text("Destination")/*@END_MENU_TOKEN@*/,
+//                isActive: self.$PayViewIsSelected,
+//                label: {
+//
+//                    VStack{
+//
+//                        Text("Оплатить")
+//                            .foregroundColor(.white)
+//                            .font(Font.custom("RussoOne-Regular", size: 20))
+//                    }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+//                    .padding(10)
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .stroke(Color.blue, lineWidth: 1)
+//                    )
+//                    .frame(height: 50)
+//                    .background(Color("mainColor"))
+//                    .cornerRadius(10)
+//                    .animation(.linear(duration: 0.3))
+//                    .padding(.vertical, 20)
+//                })
+//                .disabled(viewModel.isFileldFull == false)
                 .navigationTitle("Оформление аренды")
                 .navigationBarTitleDisplayMode(.inline)
         }
