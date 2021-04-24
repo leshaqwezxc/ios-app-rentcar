@@ -14,14 +14,14 @@ struct MyGarageScreen: View {
             GeometryReader { geometry in
                 ScrollView {
                     VStack {
-                        if viewModel.loadingState == .success || viewModel.loadingState == .loading {
+                        if viewModel.loadingState == .success  {
                             if viewModel.rents.isEmpty {
                                 Text("На данный момент вы не арендовали авто")
                                     .foregroundColor(Color("mainColor"))
                                     .font(Font.custom("RussoOne-Regular", size: 30))
                                     .padding()
                             } else {
-                                ForEach(viewModel.rents){
+                                ForEach(viewModel.filteredRents()){
                                     rent in MyGarageView(rent:rent)
                                 }
                             }

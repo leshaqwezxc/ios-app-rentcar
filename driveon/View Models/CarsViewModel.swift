@@ -47,7 +47,7 @@ class CarsViewModel: ObservableObject {
                 if let cars = cars {
                     DispatchQueue.main.async {
                         self.cars = cars
-                        //self.loadingState = .success
+                        self.loadingState = .success
                         self.appService.getRents(complection: {
                             result in
                             switch result {
@@ -55,10 +55,9 @@ class CarsViewModel: ObservableObject {
                                 DispatchQueue.main.async {
                                     self.rents = rents
                                     self.loadingState = .success
-//                                    for i in 0...cars.count - 1 {
-//                                        cars[i].addDates(rents: self.rents)
-//                                    }
+                                   self.union()
                                 }
+                                
                             case .failure(let error):
                                 print(error)
                                 DispatchQueue.main.async {
@@ -88,6 +87,12 @@ class CarsViewModel: ObservableObject {
             }
         }
         return !arrayIsEmpty
+    }
+    func union(){
+        for i in 0...cars.count - 1{
+            cars[i].addDates(rents: rents)
+            print(cars[i].dates)
+        }
     }
     
     func sortCars()->[Car] {
@@ -138,11 +143,20 @@ class CarsViewModel: ObservableObject {
         })
     }
     
-
+//    func compareDate(car: Car, dates: Date?) ->Bool {
+//        if car.dates.isEmpty || dates == {
+//            return true
+//        }
+//        for i in 0...car.dates.count-1 {
+//            if car.dates[i].dateBegin < filter.dateBegin && car.dates[i].dateEnd < filter.dateEnd {
+//                
+//            }
+//        }
+//    }
     
     func filterCars() -> [Car] {
         return sortCars().filter({
-            return check(value: $0.carclass, array: filter.carClass) &&  $0.seats >= filter.seats && check(value: $0.transmission, array: filter.transmission) && check(value: $0.branch.city, array: filter.cities) && Double($0.tariff.from8Days) >= (filter.price.lowerBound * 10000) && Double($0.tariff.from8Days) <= (filter.price.upperBound * 10000)
+            return check(value: $0.carclass, array: filter.carClass) &&  $0.seats >= filter.seats && check(value: $0.transmission, array: filter.transmission) && check(value: $0.branch.city, array: filter.cities) && Double($0.tariff.from8Days) >= (filter.price.lowerBound * 10000) && Double($0.tariff.from8Days) <= (filter.price.upperBound * 10000) 
         })
         
     }

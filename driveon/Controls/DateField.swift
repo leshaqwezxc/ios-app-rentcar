@@ -42,7 +42,7 @@ extension DateFormatter {
     static var yearMonthDay: DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
-        formatter.dateFormat = "dd MMM YYYY"
+        formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }
 }

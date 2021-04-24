@@ -18,6 +18,22 @@ struct UserInfo: Codable {
     let email, password: String
 }
 
+struct RegistationUserModel : Codable {
+    var email, password: String
+    var firstName, lastName, patronymic: String
+    var dateOfBirth: Date
+    var driveLicense, passport: String
+    var phone: String
+    var accessCode: Int
+    var dateofissue: Date
+    var passportImg,driveLicenseImg, userPic: Data
+
+    enum CodingKeys: String, CodingKey {
+        case  firstName, lastName, patronymic, dateOfBirth, driveLicense, driveLicenseImg, passport, passportImg, phone, userPic, accessCode, email, password
+        case dateofissue
+    }
+}
+
 struct UserProfile: Codable {
     let id: Int
     let email, password, createdAt, updatedAt: String

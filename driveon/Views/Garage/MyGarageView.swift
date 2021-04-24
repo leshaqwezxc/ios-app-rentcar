@@ -18,7 +18,7 @@ struct MyGarageView: View {
                         .font(.system(size: 30))
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .padding(.horizontal, 20)
-                    KFImage(URL(string: "http://192.168.0.10:3000/\(rent.car.carimg)"))
+                    KFImage(URL(string: "http://192.168.0.14:3000/\(rent.car.carimg)"))
                         .resizable()
                         .scaledToFill()
                         .padding(.top, 40)
@@ -205,6 +205,12 @@ struct MyGarageView: View {
                         .padding(.bottom, 0)
                         Button(action: {
                             
+                                guard let url = URL(string: "telprompt://123 1234 123"),
+                                    UIApplication.shared.canOpenURL(url) else {
+                                    return
+                                }
+                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                 
                         }, label: {
                             
                             VStack{

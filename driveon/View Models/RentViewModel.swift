@@ -17,9 +17,6 @@ class RentViewModel: ObservableObject {
     ParametrItem(name: "Парковка", isSelected: false)]
     var appService = AppSevice()
     
-    var isFileldFull: Bool {
-        return Rentdate1 != nil && Rentdate2 != nil
-    }
     var isDateValid: Bool {
         return  Rentdate2 > Rentdate1
     }

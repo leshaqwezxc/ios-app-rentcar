@@ -10,10 +10,34 @@ import Combine
 
 
 class AppSevice {
-    let baseUrl = "http://localhost:3000"
+    let baseUrl = "http://192.168.0.14:3000"
+    
+    
+    
+    func registration(rum: RegistationUserModel,complection: @escaping (Result<RegistationUserModel,NetworkError>) -> Void){
+        guard let url = URL(string: "\(baseUrl)/api/user/registration") else {
+            return complection(.failure(.badUrl))
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-url-encoded", forHTTPHeaderField: "Content-Type")
+        let jsonData = try? JSONEncoder().encode(rum)
+        request.httpBody = jsonData
+        URLSession.shared.dataTask(with: request) {
+            data, response, error in
+            guard let data = data, error == nil else {
+                return complection(.failure(.noData))
+            }
+            
+            guard let user = try?  JSONDecoder().decode(RegistationUserModel.self, from: data) else {
+                return complection(.failure(.decodingError ))
+            }
+            complection(.success(user))
+        }.resume()
+    }
     
     func rentCar(rent: Rent,complection: @escaping (Result<Rent,NetworkError>)-> Void) {
-        guard let url = URL(string: "http://localhost:3000/api/rent") else {
+        guard let url = URL(string: "\(baseUrl)/api/rent") else {
             return complection(.failure(.badUrl))
         }
         var request = URLRequest(url: url)
@@ -34,7 +58,7 @@ class AppSevice {
         }.resume()
     }
     func getRents(complection: @escaping (Result<[Rent],NetworkError>)-> Void) {
-        guard let url = URL(string: "http://localhost:3000/api/rent") else {
+        guard let url = URL(string: "\(baseUrl)/api/rent") else {
             return complection(.failure(.badUrl))
         }
         var request = URLRequest(url: url)
@@ -52,7 +76,7 @@ class AppSevice {
         }.resume()
     }
     func getUser(userId: Int,complection: @escaping (Result<UserProfile,NetworkError>) -> Void) {
-        guard let url = URL(string: "http://localhost:3000/api/user/\(userId)") else {
+        guard let url = URL(string: "\(baseUrl)/api/user/\(userId)") else {
             return complection(.failure(.badUrl))
         }
         URLSession.shared.dataTask(with: url) {
@@ -70,7 +94,7 @@ class AppSevice {
     }
     
     func login(userEmail: String, userPassword: String, complection: @escaping (Result<User,NetworkError>) -> Void) {
-        guard let url = URL(string: "http://localhost:3000/api/user/login") else {
+        guard let url = URL(string: "\(baseUrl)/api/user/login") else {
             return complection(.failure(.badUrl))
         }
         var request = URLRequest(url: url)
@@ -100,7 +124,7 @@ class AppSevice {
     func getRentById(userId: Int, complection: @escaping (Result<[GarageRent],NetworkError>) -> Void ) {
         print(" my user id \(userId)")
         
-        guard let url = URL(string: "http://localhost:3000/api/rent/\(userId)") else {
+        guard let url = URL(string: "\(baseUrl)/api/rent/rentwithcar/\(userId)") else {
             return complection(.failure(.badUrl))
         }
         URLSession.shared.dataTask(with: url) {

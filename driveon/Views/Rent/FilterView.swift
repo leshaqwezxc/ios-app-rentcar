@@ -169,27 +169,62 @@ struct FilterView: View {
                     }.padding(.vertical, 5)
                     VStack(alignment: .leading, spacing: 0){
                         Text("Даты аренды").font(.system(size: 14)).foregroundColor(.gray).padding(.leading, 12)
-                        HStack(){
-                            Text("Дата начала аренды").padding(.leading, 12)
-                            Spacer()
-                            DateField("Введите дату", date: self.$flt.dateBegin)
-                                .padding(.trailing,12)
-                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 35, alignment: .trailing)
-                        }.padding(.vertical, 5)
-//                        DatePicker("Дата начала аренды", selection: self.$date, displayedComponents: .date)
-//                            .frame( height: 60)
-//                            .padding(.horizontal, 20)
+//                        HStack(){
+
+//                            DateField("Введите дату", date: self.$flt.dateBegin)
+//                                .padding(.trailing,12)
+//                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 35, alignment: .trailing)
+//                        }.padding(.vertical, 5)
+                        if flt.dateBegin == nil {
+                            HStack{
+                                Text("Дата начала аренды").padding(.leading, 20)
+                                Spacer()
+                                Button(action: {
+                                    flt.dateBegin = Date()
+                                }, label: {
+                                    Text("Установить дату")
+                                })
+                                .padding(.trailing, 20)
+                            }
+                            .frame( height: 60)
+
+                        } else {
+                            DatePicker("Дата начала аренды", selection:  Binding<Date>(get: {self.flt.dateBegin ?? Date()}, set: {self.flt.dateBegin = $0}), displayedComponents: [.date, .hourAndMinute])
+                                .opacity(flt.dateBegin == nil ? 0.5 : 1)
+                                .frame( height: 60)
+                                .padding(.horizontal, 20)
+                        }
+//                        DatePicker("Дата начала аренды", selection:  Binding<Date>(get: {self.flt.dateBegin ?? Date()}, set: {self.flt.dateBegin = $0}), displayedComponents: .date)
+                        
+                            
                         Divider().padding(.horizontal, 12)
-                        HStack(){
-                            Text("Дата окончания аренды").padding(.leading, 14)
-                            Spacer()
-                            DateField("Введите дату", date: self.$flt.dateEnd).padding(.trailing,14)
-                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 35, alignment: .trailing)
-                                .foregroundColor(.gray)
-                        }.padding(.vertical, 5)
-//                        DatePicker("Дата окончания аренды", selection: self.$date2, displayedComponents: .date)
-//                            .frame( height: 60)
-//                            .padding(.horizontal, 20)
+//                        HStack(){
+                            //Text("Дата окончания аренды").padding(.leading, 14)
+                            //Spacer()
+//                            DateField("Введите дату", date: self.$flt.dateEnd).padding(.trailing,14)
+//                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 35, alignment: .trailing)
+//                                .foregroundColor(.gray)
+//                        }.padding(.vertical, 5)
+                        if flt.dateEnd == nil {
+                            HStack{
+                                Text("Дата окончания аренды").padding(.leading, 20)
+                                Spacer()
+                                Button(action: {
+                                    flt.dateEnd = Date()
+                                }, label: {
+                                    Text("Установить дату")
+                                })
+                                .padding(.trailing, 20)
+                            }
+                            .frame( height: 60)
+
+                        } else {
+                            DatePicker("Дата окончания аренды", selection:  Binding<Date>(get: {self.flt.dateEnd ?? Date()}, set: {self.flt.dateEnd = $0}), displayedComponents: [.date, .hourAndMinute])
+                                .opacity(flt.dateEnd == nil ? 0.5 : 1)
+                                .frame( height: 60)
+                                .padding(.horizontal, 20)
+                        }
+//                        }
                     }.padding(.vertical, 5)
                     .navigationBarItems(leading: Button(action: {
                         self.presentationMode.wrappedValue .dismiss()
@@ -202,6 +237,7 @@ struct FilterView: View {
                     Spacer()
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
+                        //print(flt.dateEnd)
                     }, label: {
                         
                         VStack{

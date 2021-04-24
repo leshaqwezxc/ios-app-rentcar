@@ -45,7 +45,7 @@ class DateTextField: UITextField {
     // MARK: - Private properties
     private lazy var datePickerView: UIDatePicker = {
         let datePickerView = UIDatePicker()
-        datePickerView.datePickerMode = .date
+        datePickerView.datePickerMode = .dateAndTime
         datePickerView.preferredDatePickerStyle = .wheels
         return datePickerView
     }()

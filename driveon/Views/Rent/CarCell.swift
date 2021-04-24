@@ -12,7 +12,7 @@ struct CarCell: View {
      
     let car: Car
     var body: some View {
-        VStack{
+         LazyVStack{
             HStack(spacing: 0){
                 Text("\(car.carbrand)")
                     .foregroundColor(.black)
@@ -35,7 +35,7 @@ struct CarCell: View {
 //                    .padding(.bottom, -16)
                 Spacer()
             }
-            KFImage(URL(string: "http://192.168.0.10:3000/\(car.carimg)"))
+            KFImage(URL(string: "http://192.168.0.14:3000/\(car.carimg)"))
                 .resizable()
                 .scaledToFit()
                 .frame(width: 337, height: 188, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)

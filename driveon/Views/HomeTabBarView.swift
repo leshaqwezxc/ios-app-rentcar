@@ -36,12 +36,6 @@ struct HomeTabBarView: View {
                     Text("Профиль")
             }.tag(4)
         }.accentColor(Color("mainColor"))
-        }
-    
-}
-
-struct HomeTabBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeTabBarView()
     }
+    
 }

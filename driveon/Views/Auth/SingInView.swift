@@ -13,8 +13,19 @@ struct SingInView: View {
     @State var pass = UserDefaults.standard.string(forKey: "pass") ?? ""
     @State var visible = false
     @State var isHomeViewPresented = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
         VStack{
+            HStack{
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "chevron.left")
+                        .font(.title)
+                })
+                Spacer()
+            }
+            .padding()
             Image("logo2")
                 .resizable()
                 .frame(width: 262, height: 75, alignment: .center)
@@ -58,9 +69,12 @@ struct SingInView: View {
                         .padding(.trailing, 20)
                 })
             }
-            Divider()
-                .padding(.horizontal,20)
-            Spacer()
+
+            Group{
+                Divider()
+                    .padding(.horizontal,20)
+                Spacer()
+            }
             Button(action: {
                 viewModel.login(userEmail: email, userPassword: pass)
                 UserDefaults.standard.set(self.email, forKey: "email")

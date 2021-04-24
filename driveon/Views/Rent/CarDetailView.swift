@@ -19,7 +19,7 @@ struct CarDetailView: View {
                     Text("\(viewModel.carBrand) \(viewModel.model)")
                         .font(Font.custom("RussoOne-Regular", size: 30))
                         .padding(.horizontal, 20)
-                    KFImage(URL(string: "http://192.168.0.10:3000/\(viewModel.carImage)"))
+                    KFImage(URL(string: "http://192.168.0.14:3000/\(viewModel.carImage)"))
                         .resizable()
                         .scaledToFit()
                         .padding(.top, 40)

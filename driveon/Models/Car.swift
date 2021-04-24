@@ -3,18 +3,22 @@ import Foundation
 struct CarsResponse: Codable{
     let car: [Car]
 }
+struct RentDates: Codable {
+    var dateBegin: Date
+    var dateEnd: Date
+}
 
 struct Car: Codable, Identifiable{
-    let id: Int
-    let carbrand, model, color, year: String
-    let transmission: String
-    let seats, power: Double
-    let carclass, carimg, statenum: String
-    let vin, caraccesscode: Int
-    let tariffID, branchID: Int
-    let tariff: Tariff
-    let branch: Branch
-    var dates: [Date]? = nil
+    var id: Int
+    var carbrand, model, color, year: String
+    var transmission: String
+    var seats, power: Double
+    var carclass, carimg, statenum: String
+    var vin, caraccesscode: Int
+    var tariffID, branchID: Int
+    var tariff: Tariff
+    var branch: Branch
+    var dates: [RentDates] = [RentDates]()
 
     enum CodingKeys: String, CodingKey {
         case id, carbrand, model, color, year, transmission, seats, power, carclass, carimg, statenum, vin, caraccesscode
@@ -28,7 +32,9 @@ struct Car: Codable, Identifiable{
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         for rent in rents {
             if rent.carID == id {
-                dates?.append(formatter.date(from: rent.end) ?? Date())
+               // dates.append(formatter.date(from: rent.end) ?? Date())
+                dates.append(RentDates(dateBegin: formatter.date(from: rent.start) ?? Date(), dateEnd: formatter.date(from: rent.end) ?? Date()))
+                //print(dates)
             }
         }
     }

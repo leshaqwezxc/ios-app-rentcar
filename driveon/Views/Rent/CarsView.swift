@@ -32,7 +32,7 @@ struct CarsView: View {
                 case .success, .loading, .none:
                     SearchBar(text: $viewModel.searchText)
                         .padding(.horizontal,20)
-                    VStack(alignment:.leading ,spacing: 15){
+                    LazyVStack(alignment:.leading ,spacing: 15){
                         Text("Свободные авто")
                             .font( .title)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
